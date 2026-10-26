@@ -25,10 +25,10 @@ The project folder is `form-swapcar`; the npm package is `swapcar-campaign-form`
 - UTM: captured independently in `src/service.ts`; sent only when the backend supports `campaign` and `VITE_API_SUPPORTS_UTM=true`.
 - Backend contract: see `BACKEND-MAPPING.md`. The original DTO remains unchanged.
 
-Customer data stays in React memory; there is no logging, local storage, or analytics. City is optional. Both financial-obligations answers are supported, with neither preselected. No upload fields or obligations amount were added. On API failure, entered values remain available for retry; requests time out after 20 seconds. Reloading clears entered values.
+Customer data stays in React memory; there is no logging, local storage, or analytics. City is optional. Monthly salary must be at least 4,000 SAR. Both financial-obligations answers are supported, with neither preselected. Selecting "يوجد" reveals a required positive obligations amount in SAR, sent as `currentInstallments`; selecting "لا يوجد" clears and omits it. No upload fields were added. On API failure, entered values remain available for retry; requests time out after 20 seconds. Reloading clears entered values.
 
 ## Verification limits
 
-The production build (including TypeScript) and all five existing validation/payload tests pass. Asset references, SVG parsing, removal of previous-brand references, and text contrast were checked. Browser automation was unavailable during this change, so desktop/mobile rendering and interactive browser checks remain unverified.
+Run `npm test` for validation and payload checks, including the 4,000 SAR salary boundary, conditional obligations amount, Arabic/Persian digits, and amount omission when there are no obligations. Run `npm run build` for TypeScript and the production build.
 
-No compatible real API or credentials are included, so live acceptance and failure responses require verification against the configured backend. The rebrand does not change the data model or submission contract.
+No compatible real API or credentials are included, so live acceptance and failure responses require verification against the configured backend. The backend must enforce the salary minimum and conditional obligations amount described in `BACKEND-MAPPING.md`.
