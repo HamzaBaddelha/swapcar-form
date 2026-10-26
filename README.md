@@ -1,6 +1,6 @@
-# مولها — campaign financing form
+# Swapcar | سواب كار - campaign financing form
 
-Standalone mobile-first Arabic RTL React + TypeScript + Vite form. Two validated steps (personal details, then financing details including financial obligations), accessible errors, back navigation, loading/retry/confirmed success states and an explicitly labeled development preview. Customer data stays in React memory; no logging, local storage or analytics.
+Mobile-first Arabic RTL React + TypeScript + Vite form with the red/burgundy Swapcar identity (Option 1). Two validated steps cover personal and financing details, with back navigation, loading/retry states, confirmed success, and a clearly labeled development preview.
 
 ## Run
 
@@ -9,24 +9,26 @@ npm install
 npm run dev
 ```
 
-`npm run start` also starts Vite. `npm run typecheck`, `npm test`, and `npm run build` verify the project. Build output is `dist/` for static hosting. The Vite development server is not the production hosting server.
+The project folder is `form-swapcar`; the npm package is `swapcar-campaign-form`. `npm run start` also starts Vite. Run `npm test` and `npm run build` to check validation/payload behavior, TypeScript, and the production build. Build output is `dist/` for static hosting.
+
+## Branding
+
+- Original Arabic and English outlined SVG logos, light variants, and the S symbol are in `public/brand/`.
+- Colors and responsive styles are in `src/styles.css`; title, description, theme color, and favicon are in `index.html`.
+- See [BRAND-GUIDELINES.md](BRAND-GUIDELINES.md) for asset provenance, palette details, usage, and the missing webfont files.
+- The footer links to [Swapcar Saudi Arabia](https://swapcar.sa/ar). Contact information comes from its [English site](https://swapcar.sa/en). Previous-brand app links, service/partner lists, and payment claims were removed instead of attributing them to Swapcar.
 
 ## Configuration
 
-- Branding: edit tokens at the top of `src/styles.css`; text wordmark is in `src/main.tsx`. Green/white colors follow the supplied swatches provisionally. No verified logo or font assets were available. The system Arabic font stack needs no external font request.
-- Cities: edit the city options in `src/data.ts`.
+- Cities: edit `src/data.ts`.
 - API: copy `.env.example` to `.env`, set `VITE_FINANCING_API_URL` to a compatible endpoint and restart/rebuild. Vite environment values are public; do not add secrets. No endpoint means preview only, with no network submission and no live success message.
 - UTM: captured independently in `src/service.ts`; sent only when the backend supports `campaign` and `VITE_API_SUPPORTS_UTM=true`.
-- Backend changes: see `BACKEND-MAPPING.md`. The old DTO remains unchanged.
+- Backend contract: see `BACKEND-MAPPING.md`. The original DTO remains unchanged.
 
-## Assumptions and missing inputs
+Customer data stays in React memory; there is no logging, local storage, or analytics. City is optional. Both financial-obligations answers are supported, with neither preselected. No upload fields or obligations amount were added. On API failure, entered values remain available for retry; requests time out after 20 seconds. Reloading clears entered values.
 
-Only the DTO and pasted request were available in the workspace/attachment files. The named DOCX and VS Code screenshot were not available for inspection. The four chat images display white and green color swatches. Branding is provisional, including the temporary مولها wordmark and system typography. No actual API was supplied.
+## Verification limits
 
-City is optional. “لا يوجد” was added to complete the obligations question; neither answer is preselected. No obligations amount or uploads were invented. File uploads remain unresolved because no document types or requirements were defined.
+The production build (including TypeScript) and all five existing validation/payload tests pass. Asset references, SVG parsing, removal of previous-brand references, and text contrast were checked. Browser automation was unavailable during this change, so desktop/mobile rendering and interactive browser checks remain unverified.
 
-On API failure values remain in the form and the final button retries. Requests time out after 20 seconds. Reloading closes this in-memory application and clears entered values.
-
-## Verification
-
-Production build, TypeScript check, and five Node validation/payload tests passed. The local server returned HTTP 200 for the page and transformed React entry. Browser automation reported no available browser, so visual mobile/desktop verification and interactive end-to-end checks remain unverified. No compatible real API was available to exercise live success or failure responses. Before launch, verify navigation, both obligations choices and error/retry behavior against the configured API on mobile and desktop.
+No compatible real API or credentials are included, so live acceptance and failure responses require verification against the configured backend. The rebrand does not change the data model or submission contract.
