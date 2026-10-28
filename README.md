@@ -1,34 +1,38 @@
-# Swapcar | سواب كار - campaign financing form
+# Swapcar financing website
 
-Mobile-first Arabic RTL React + TypeScript + Vite form with the red/burgundy Swapcar identity (Option 1). Two validated steps cover personal and financing details, with back navigation, loading/retry states, confirmed success, and a clearly labeled development preview.
+A lightweight Next.js App Router website around the official String CRM iframe. String owns all customer fields, validation, submission and lead creation. The website supplies branding, responsive layout, Arabic/English presentation, loading and recovery controls.
 
 ## Run
 
+Use Node 22.18+ (verified on Node 24).
+
 ```sh
-npm install
+npm ci
 npm run dev
 ```
 
-The project folder is `form-swapcar`; the npm package is `swapcar-campaign-form`. `npm run start` also starts Vite. Run `npm test` and `npm run build` to check validation/payload behavior, TypeScript, and the production build. Build output is `dist/` for static hosting.
+Open http://localhost:3000. For production, run `npm run build` followed by `npm start`.
 
-## Branding
+## Checks
 
-- Original Arabic and English outlined SVG logos, light variants, and the S symbol are in `public/brand/`.
-- Colors and responsive styles are in `src/styles.css`; title, description, theme color, and favicon are in `index.html`.
-- See [BRAND-GUIDELINES.md](BRAND-GUIDELINES.md) for asset provenance, palette details, usage, and the missing webfont files.
-- The footer links to [Swapcar Saudi Arabia](https://swapcar.sa/ar). Contact information comes from its [English site](https://swapcar.sa/en). Previous-brand app links, service/partner lists, and payment claims were removed instead of attributing them to Swapcar.
+```sh
+npm test
+npm run lint
+npx tsc --noEmit
+npm run build
+```
 
-## Configuration
+## Architecture
 
-- Cities: edit `src/data.ts`.
-- API: copy `.env.example` to `.env`, set `VITE_FINANCING_API_URL` to a compatible endpoint and restart/rebuild. Vite environment values are public; do not add secrets. No endpoint means preview only, with no network submission and no live success message.
-- UTM: captured independently in `src/service.ts`; sent only when the backend supports `campaign` and `VITE_API_SUPPORTS_UTM=true`.
-- Backend contract: see `BACKEND-MAPPING.md`. The original DTO remains unchanged.
+- `app/page.tsx`: the single website page and branded shell.
+- `app/string-finance-form.tsx`, `app/string-form.ts`: official embed, guarded messaging, resizing and recovery.
+- `app/providers.tsx`, `lib/i18n/`, `locales/{ar,en}/`: website localization only.
+- `components/`: header, language switch and localized text.
+- `app/styles.css`, `public/brand/`: the used brand styles and assets.
+- `tests/`: message security, source and localization regression checks.
 
-Customer data stays in React memory; there is no logging, local storage, or analytics. City is optional. Monthly salary must be at least 4,000 SAR. Both financial-obligations answers are supported, with neither preselected. Selecting "يوجد" reveals a required positive obligations amount in SAR, sent as `currentInstallments`; selecting "لا يوجد" clears and omits it. No upload fields were added. On API failure, entered values remain available for retry; requests time out after 20 seconds. Reloading clears entered values.
+The source stays `website` in both the iframe URL and every `FORM_PARAMS` message. Arbitrary customer query parameters are never forwarded. Switching the website language retains the same iframe; the embedded form's language remains controlled by String.
 
-## Verification limits
+There is no native financing form, vehicle workflow, custom submission service, React Query or Tailwind dependency. No application API configuration is required.
 
-Run `npm test` for validation and payload checks, including the 4,000 SAR salary boundary, conditional obligations amount, Arabic/Persian digits, and amount omission when there are no obligations. Run `npm run build` for TypeScript and the production build.
-
-No compatible real API or credentials are included, so live acceptance and failure responses require verification against the configured backend. The backend must enforce the salary minimum and conditional obligations amount described in `BACKEND-MAPPING.md`.
+See [the integration and cleanup report](docs/string-financing-integration.md) for the exact deletion inventory, protocol behavior, verification results and limitations controlled by String.

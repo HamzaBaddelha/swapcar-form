@@ -1,0 +1,19 @@
+{
+  "pageTitle": "Car financing application | Swapcar",
+  "pageDescription": "Apply for car financing with Swapcar.",
+  "home": "Swapcar home",
+  "brand": "Swapcar",
+  "languageNameAr": "العربية",
+  "languageNameEn": "English",
+  "switchLanguage": "Switch language to {{language}}",
+  "heroTitle": "You are a few steps away",
+  "heroAccent": "from owning your car.",
+  "footerDescription": "Your next car starts here. Complete your financing application with Swapcar.",
+  "visitWebsite": "Visit Swapcar",
+  "quickLinks": "Quick links",
+  "financeLink": "Apply for car financing",
+  "browseCars": "Browse cars",
+  "contactUs": "Contact us",
+  "phoneLabel": "Phone:",
+  "copyright": "© Swapcar. All rights reserved."
+}

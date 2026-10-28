@@ -1,0 +1,15 @@
+{
+  "title": "Apply for car financing with Swapcar",
+  "description": "Complete the application form to request financing",
+  "checkDetails": "Please check your details before submitting your application",
+  "loading": "Loading the financing form…",
+  "iframeTitle": "Swapcar car financing application form",
+  "loadError": "The form could not load. Try again or open it in a new window.",
+  "loadSlow": "The form is taking longer than usual to load. If it does not appear, try again or open it in a new window.",
+  "retry": "Reload the form",
+  "retryWarning": "You may need to enter your details again after reloading.",
+  "completeInside": "Complete the required details inside the form",
+  "openForm": "Open the form in a new window",
+  "enableJavascript": "Enable JavaScript or open the form in a new window to complete your application.",
+  "formLanguageNotice": "The application form is currently available in Arabic."
+}

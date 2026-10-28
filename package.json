@@ -1,1 +1,28 @@
-{"name":"swapcar-campaign-form","private":true,"version":"1.0.0","type":"module","scripts":{"dev":"vite --host 0.0.0.0","start":"vite --host 0.0.0.0","build":"tsc --noEmit && vite build","typecheck":"tsc --noEmit","test":"node --experimental-strip-types --test tests/*.test.ts"},"dependencies":{"motion":"^14.0.0","react":"^19.0.0","react-dom":"^19.0.0"},"devDependencies":{"@types/react":"^19.0.0","@types/react-dom":"^19.0.0","typescript":"^5.7.0","vite":"^6.0.0"}}
+{
+  "name": "my-app",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "test": "node --test tests/string-form.test.mjs tests/frontend-infrastructure.test.mjs"
+  },
+  "dependencies": {
+    "i18next": "^26.5.11",
+    "next": "16.4.3",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "react-i18next": "^17.1.9"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.4.3",
+    "typescript": "^5"
+  }
+}
